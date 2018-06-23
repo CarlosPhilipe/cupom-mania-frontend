@@ -23,11 +23,12 @@ if (!file_exists($path)) {
     <link href="src/resources/css/promocao.css" rel="stylesheet">
   </head>
   <body>
-    <?php
-      // include(__dir__."/src/environment.");
-      include(__dir__."/src/view/layouts/menu.php");
-      include($path);
-    ?>
+    <?php include(__dir__."/src/view/layouts/menu.php"); ?>
+    <div class="container">
+      <?php
+        include($path);
+      ?>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="src/resources/bootstrap/js/bootstrap.min.js"></script>
   </body>
