@@ -3,14 +3,18 @@
 $action = $_GET['action'];
 $controller = $_GET['controller'];
 
-// echo "$controller/$action";
+if ($controller === null && $action === null) {
+    header('Location: src/controller/PromocaoController.php?controller=promocao&action=list');
+}
+
 $path = __dir__."/src/view/$controller/$action.php";
 if (!file_exists($path)) {
-  $path = __dir__."/src/view/$controller/index.php";
-  if (!file_exists($path)) {
-      $path = __dir__."/src/view/promocao/index.php";
-  }
+    $path = __dir__."/src/view/$controller/index.php";
+    if (!file_exists($path)) {
+        $path = __dir__."/src/view/promocao/index.php";
+    }
 }
+
 ?>
 <html lang="en">
   <head>

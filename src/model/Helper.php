@@ -3,28 +3,22 @@
 require(__dir__."/../environment.php");
 
 class Helper {
-  public static function sendPostRequest($postdata){
-    $postdata = http_build_query(
-        array(
-            'var1' => 'some content',
-            'var2' => 'doh'
-        )
-    );
+  public static function sendPostRequest($path = null, $data = null) {
+    $url = BASE_URL."/".KEY."/".$path;
 
-    $opts = array('http' =>
-        array(
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/json",
             'method'  => 'POST',
-            'header'  => 'Content-type: application/json',
-            'content' => $postdata
+            'content' => $data
         )
     );
-
-    $context = stream_context_create($opts);
-
-    return file_get_contents('http://example.com/submit.php', false, $context);
+    $context  = stream_context_create($options);
+    return file_get_contents($url, false, $context);
   }
 
   public static function  sendGetRequest($path = null) {
+    $url = BASE_URL."/".KEY."/".$path;
     $opts = array('http' =>
         array(
             'method'  => 'GET',
@@ -34,7 +28,7 @@ class Helper {
 
     $context = stream_context_create($opts);
 
-    $json = file_get_contents(BASE_URL."/".KEY."/".$path, false, $context);
+    $json = file_get_contents($url, false, $context);
     return json_decode($json, TRUE);
   }
 }

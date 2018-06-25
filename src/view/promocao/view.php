@@ -1,9 +1,10 @@
 <?php
-require(__dir__."/../../model/Helper.php");
-$id = $_GET['promocao'];
-$promocao = Helper::sendGetRequest('promocao/'.$id);
+session_start();
+
+$promocao = $_SESSION['msg'];
+$_SESSION['msg'] = null;
 ?>
-<a class="btn btn-default" href="?controller=promocao" role="button">Voltar</a>
+<a class="btn btn-default" href="src/controller/PromocaoController.php?controller=promocao&action=list" role="button">Voltar</a>
 
 <!-- Stack the columns on mobile by making one full-width and the other half-width -->
 <div class="row">
