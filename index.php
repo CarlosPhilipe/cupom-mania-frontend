@@ -1,20 +1,17 @@
 <?php
-// $promocao = require_once('./src/view/promocao/index.php');
+session_start();
 $action = $_GET['action'];
 $controller = $_GET['controller'];
+$path = $_SESSION['path'];
 
+// print_r($_SESSION['user']);
+$_SESSION['path'] = null;
 if ($controller === null && $action === null) {
-    header('Location: src/controller/PromocaoController.php?controller=promocao&action=list');
+    header('Location: src/controller/UserController.php?controller=user&action=login');
 }
-
-$path = __dir__."/src/view/$controller/$action.php";
-if (!file_exists($path)) {
-    $path = __dir__."/src/view/$controller/index.php";
-    if (!file_exists($path)) {
-        $path = __dir__."/src/view/promocao/index.php";
-    }
+if (!$path) {
+    header('Location: src/controller/UserController.php?controller=user&action=login');
 }
-
 ?>
 <html lang="en">
   <head>
@@ -30,7 +27,7 @@ if (!file_exists($path)) {
     <?php include(__dir__."/src/view/layouts/menu.php"); ?>
     <div class="container">
       <?php
-        include($path);
+        include(__dir__."/src/view/$path");
       ?>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

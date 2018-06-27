@@ -12,6 +12,6 @@ $_SESSION['msg'] = null;
   <div class="col-sm-12"><h1><?php echo ($promocao['titulo']) ?></h1></div>
   <div class="col-sm-12"><img src='<?php echo ($promocao['imagem_campanha']) ?>' alt="..." class="img-responsive img-thumbnail img-thumbnail"></div>
   <div class="col-sm-12"><h2><?php echo ($promocao['valor']) ?></h2></div>
-  <div class="col-sm-12"><a class="btn btn-danger" href="#" role="button">Gerar Cupom</a></div>
+  <div class="col-sm-12"><a class="btn btn-danger" href="src/controller/CupomController.php?controller=cupom&action=create&id=<?php echo ($promocao['idpromocao']) ?>" role="button">Gerar Cupom</a></div>
   <div class="col-sm-12"><?php echo ($promocao['regulamento']) ?></div>
 </div>

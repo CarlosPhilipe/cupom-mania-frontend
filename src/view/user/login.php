@@ -1,3 +1,4 @@
+<a class="btn btn-primary" href="src/controller/UserController.php?controller=user&action=signup">Cadastrar</a>
 <h2/>Logar</h2>
 <form action="src/controller/UserController.php?controller=user&action=postlogin" method="POST">
   <div class="form-group">
@@ -10,4 +11,3 @@
   </div>
   <button type="submit" class="btn btn-default">Entrar</button>
 </form>
-<a class="btn btn-primary" href="src/controller/UserController.php?controller=user&action=signup">Cadastrar</a>
