@@ -31,7 +31,7 @@ $_SESSION['msg'] = null;
     <div class="col-sm-1">R$ <?php echo ($value['quantidade']) ?></div>
     <div class="col-sm-3">
       <a class="btn btn-primary" href="src/controller/CupomController.php?controller=cupom&action=alterar&id=<?php echo ($value['idpromocao']) ?>" role="button">Alterar</a>
-      <a class="btn btn-danger" href="src/controller/CupomController.php?controller=cupom&action=create&id=<?php echo ($value['idpromocao']) ?>" role="button">Excluir</a>
+      <a class="btn btn-danger" href="src/controller/PromocaoController.php?controller=promocao&action=delete&id=<?php echo ($value['idpromocao']) ?>" role="button">Excluir</a>
     </div>
   </div>
 <?php endforeach; ?>

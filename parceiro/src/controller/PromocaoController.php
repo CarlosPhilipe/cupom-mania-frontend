@@ -25,6 +25,14 @@ class PromocaoController extends Controller {
     header('Location: ../../index.php?controller=promocao&action=view');
   }
 
+  public function actionDelete($id)
+  {
+    $promocao = Helper::sendDeleteRequest($_SESSION['estabelecimento']['key'].'/promocao/'.$id);
+    // print_r($promocao);
+    // $_SESSION['path'] = 'promocao/view.php';
+    $this->actionList();
+  }
+
   public function actionCreate()
   {
 
@@ -73,6 +81,9 @@ class PromocaoController extends Controller {
           break;
         case 'createPost':
           $this->actionCreatePost();
+          break;
+        case 'delete':
+          $this->actionDelete($this->id);
           break;
         case 'index':
           $this->actionIndex();

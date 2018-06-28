@@ -18,6 +18,20 @@ class Helper {
     return file_get_contents($url, false, $context);
   }
 
+  public static function sendDeleteRequest($path = null, $data = null) {
+    $url = BASE_URL."/".$path;
+
+    $options = array(
+        'http' => array(
+            'header'  => "Content-type: application/json",
+            'method'  => 'DELETE'
+        )
+    );
+    $context  = stream_context_create($options);
+    // print_r($url);
+    return file_get_contents($url, false, $context);
+  }
+
   public static function  sendGetRequest($path = null) {
     $url = BASE_URL."/".$path;
     $opts = array('http' =>
