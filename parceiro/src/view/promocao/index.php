@@ -6,7 +6,7 @@ $promocoes = $_SESSION['msg'];//Helper::sendGetRequest('promocao');
 $_SESSION['msg'] = null;
 ?>
 <h1>Promoções</h1>
-<a class="btn btn-primary" href="#" role="button">Nova Promoção</a>
+<a class="btn btn-primary" href="src/controller/PromocaoController.php?controller=promocao&action=create" role="button">Nova Promoção</a>
 <hr>
 <div class="row promo:item">
   <div class="col-sm-3">Título</div>

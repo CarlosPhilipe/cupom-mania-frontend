@@ -1,5 +1,4 @@
-<a class="btn btn-primary" href="src/controller/EstabelecimentoController.php?controller=user&action=signup">Cadastrar</a>
-<h2/>Logar</h2>
+<<h2/>Logar</h2>
 <form action="src/controller/EstabelecimentoController.php?controller=user&action=postlogin" method="POST">
   <div class="form-group">
     <label for="inputEmail">Email</label>

@@ -25,6 +25,35 @@ class PromocaoController extends Controller {
     header('Location: ../../index.php?controller=promocao&action=view');
   }
 
+  public function actionCreate()
+  {
+
+    $_SESSION['path'] = 'promocao/create.php';
+
+    header('Location: ../../index.php?controller=promocao&action=create');
+  }
+
+  public function actionCreatePost()
+  {
+    if ($_POST && !empty($_POST['inputTitulo']) && !empty($_POST['inputImagem'])) {
+        $data = json_encode([
+          'titulo' => $_POST['inputTitulo'],
+          'imagem_campanha' => $_POST['inputImagem']
+        ]);
+        $msg = Helper::sendPostRequest($_SESSION['estabelecimento']['key'].'/promocao', $data);
+        if($msg->idpromocao) {
+          header('Location: ./PromocaoController.php?controller=promocao&action=list');
+        }
+        else {
+          $this->actionCreate();
+        }
+    }
+    else
+    {
+      $this->actionCreate();
+    }
+  }
+
   public function actionInit()
   {
     if (!$_SESSION['estabelecimento']) {
@@ -38,6 +67,12 @@ class PromocaoController extends Controller {
           break;
         case 'view':
           $this->actionView($this->id);
+          break;
+        case 'create':
+          $this->actionCreate();
+          break;
+        case 'createPost':
+          $this->actionCreatePost();
           break;
         case 'index':
           $this->actionIndex();
