@@ -11,7 +11,7 @@ require(__dir__."/../../environment.php");
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><?php echo NAME_APP ?> - <?php echo $_SESSION['user']['name']; ?></a>
+      <a class="navbar-brand" href="#"><?php echo NAME_APP ?> - <?php echo $_SESSION['user']['nome']; ?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
