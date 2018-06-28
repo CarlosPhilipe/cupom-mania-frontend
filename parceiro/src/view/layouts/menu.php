@@ -11,15 +11,14 @@ require(__dir__."/../../environment.php");
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#"><?php echo NAME_APP ?> - <?php echo $_SESSION['user']['nome']; ?></a>
+      <a class="navbar-brand" href="#"><?php echo NAME_APP ?> - <?php echo $_SESSION['estabelecimento']['nome']; ?></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="src/controller/PromocaoController.php?controller=promocao&action=list">Home <span class="sr-only">(current)</span></a></li>
+        <li><a href="src/controller/PromocaoController.php?controller=promocao&action=list">Promoções <span class="sr-only">(current)</span></a></li>
         <?php if (isset($_SESSION['estabelecimento'])): ?>
-          <li ><a href="#">Promoções</a></li>
           <li ><a href="#">Validar Cupom</a></li>
           <li ><a href="src/controller/EstabelecimentoController.php?controller=user&action=logout">Sair</a></li>
         <?php endif; ?>

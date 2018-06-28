@@ -11,7 +11,7 @@ class PromocaoController extends Controller {
 
   public function actionList()
   {
-    $promocoes = Helper::sendGetRequest('promocao');
+    $promocoes = Helper::sendGetRequest($_SESSION['estabelecimento']['key'].'/promocao');
     $_SESSION['path'] = 'promocao/index.php';
     $_SESSION['msg'] = $promocoes;
     header('Location: ../../index.php?controller=promocao&action=index');
@@ -19,7 +19,7 @@ class PromocaoController extends Controller {
 
   public function actionView($id)
   {
-    $promocao = Helper::sendGetRequest($_SESSION['path'].'promocao/'.$id);
+    $promocao = Helper::sendGetRequest($_SESSION['estabelecimento']['key'].'/promocao/'.$id);
     $_SESSION['path'] = 'promocao/view.php';
     $_SESSION['msg'] = $promocao;
     header('Location: ../../index.php?controller=promocao&action=view');

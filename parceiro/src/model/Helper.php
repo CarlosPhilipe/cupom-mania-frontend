@@ -19,7 +19,7 @@ class Helper {
   }
 
   public static function  sendGetRequest($path = null) {
-    $url = BASE_URL."/".KEY."/".$path;
+    $url = BASE_URL."/".$path;
     $opts = array('http' =>
         array(
             'method'  => 'GET',
