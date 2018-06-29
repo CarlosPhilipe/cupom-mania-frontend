@@ -43,13 +43,20 @@ class PromocaoController extends Controller {
 
   public function actionCreatePost()
   {
-    if ($_POST && !empty($_POST['inputTitulo']) && !empty($_POST['inputImagem'])) {
+    if ( $_POST && !empty($_POST['inputTitulo']) && !empty($_POST['inputImagem'])
+      && !empty($_POST['inputExpirationDate']) && !empty($_POST['inputValue'])
+      && !empty($_POST['inputNumber'])) {
         $data = json_encode([
           'titulo' => $_POST['inputTitulo'],
-          'imagem_campanha' => $_POST['inputImagem']
+          'imagem_campanha' => $_POST['inputImagem'],
+          'validade' => $_POST['inputExpirationDate'],
+          'valor' => $_POST['inputValue'],
+          'quantidade' => $_POST['inputNumber']
         ]);
         $msg = Helper::sendPostRequest($_SESSION['estabelecimento']['key'].'/promocao', $data);
-        if($msg->idpromocao) {
+        $msg = json_decode($msg);
+
+        if(isset($msg->mensagem)) {
           header('Location: ./PromocaoController.php?controller=promocao&action=list');
         }
         else {
