@@ -9,39 +9,44 @@ class CupomController extends Controller {
     $this->actionList();
   }
 
-  public function actionCreate()
+  public function actionValidarPost()
   {
-    $data = [
-      "idpromocao" => $this->id,
-      "idcliente" =>$_SESSION['user']['id']
-    ];
-    $data = json_encode($data);
-    $obj = Helper::sendPostRequest('cupom', $data);
-    $obj =  json_decode($obj);
-    $_SESSION['path'] = 'cupom/create.php';
-    $_SESSION['msg'] = $obj;
-    // print_r($obj);
-    header('Location: ../../index.php?controller=cupom&action=create&id='.$this->id);
+    if ( $_POST && !empty($_POST['codigo'])) {
+      $data = [
+        "numero_cupom" => $_POST['codigo']
+      ];
+      $data = json_encode($data);
+      $obj = Helper::sendPostRequest($_SESSION['estabelecimento']['key'].'/cupom/validar', $data);
+      $obj =  json_decode($obj);
+      $_SESSION['path'] = 'cupom/validar.php';
+      $_SESSION['msg'] = $obj;
+      // print_r($obj);
+      header('Location: ../../index.php?controller=cupom&action=validar');
+    }
+
   }
 
-  public function actionView($id)
+  public function actionValidar()
   {
-    $cupom = Helper::sendGetRequest('cupom/'.$id);
-    $_SESSION['path'] = 'cupom/view.php';
-    $_SESSION['msg'] = $cupom;
-    header('Location: ../../index.php?controller=cupom&action=view');
+    // $cupom = Helper::sendGetRequest('cupom/'.$id);
+    $_SESSION['path'] = 'cupom/validar.php';
+    // $_SESSION['msg'] = $cupom;
+    header('Location: ../../index.php?controller=cupom&action=validar');
   }
 
   public function actionInit()
   {
-    if (!$_SESSION['promocao']) {
+    if (!$_SESSION['estabelecimento']) {
       header('Location: ./UserController.php?controller=user&action=login');
     }
     else
     {
       switch ($this->action) {
-        case 'create':
-          $this->actionCreate();
+        case 'validar':
+          $this->actionValidar();
+          break;
+        case 'validarPost':
+          $this->actionValidarPost();
           break;
         default:
           $this->actionIndex();

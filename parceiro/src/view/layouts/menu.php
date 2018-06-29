@@ -19,7 +19,7 @@ require(__dir__."/../../environment.php");
       <ul class="nav navbar-nav">
         <li><a href="src/controller/PromocaoController.php?controller=promocao&action=list">Promoções <span class="sr-only">(current)</span></a></li>
         <?php if (isset($_SESSION['estabelecimento'])): ?>
-          <li ><a href="#">Validar Cupom</a></li>
+          <li ><a href="src/controller/CupomController.php?controller=cupom&action=validar">Validar Cupom</a></li>
           <li ><a href="src/controller/EstabelecimentoController.php?controller=user&action=logout">Sair</a></li>
         <?php endif; ?>
       </ul>
